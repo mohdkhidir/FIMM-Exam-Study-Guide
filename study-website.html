@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIMM Examination Study Guide - UTS & PRS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --secondary: #059669;
+            --accent: #f59e0b;
+            --danger: #dc2626;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .exam-timer {
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Navigation */
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-tabs button {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs button:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-tabs button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary);
+        }
+
+        .card.secondary {
+            border-left-color: var(--secondary);
+        }
+
+        .card.accent {
+            border-left-color: var(--accent);
+        }
+
+        .card.success {
+            border-left-color: var(--success);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* Intro Section */
+        .intro-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .intro-box h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro-box p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        /* Key Points */
+        .key-points {
+            background: #fef3c7;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .key-points h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--dark);
+        }
+
+        .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Info Graphics */
+        .infographic {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .flow-box {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: #f0f4ff;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+
+        .formula-box code {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        /* Questions Section */
+        .questions-container {
+            margin-top: 3rem;
+        }
+
+        .question-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .question-card.expanded {
+            border-color: var(--primary);
+            background: #f0f4ff;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: var(--dark);
+            flex: 1;
+        }
+
+        .question-number {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .question-card.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .question-answer {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .question-card.expanded .question-answer {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .option {
+            padding: 0.75rem 0;
+            margin-left: 1rem;
+        }
+
+        .option.correct {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .answer-explanation {
+            background: #f0fdf4;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            color: var(--dark);
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .two-column-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .checklist-item {
+            padding: 1rem 0;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            width: 35%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .nav-tabs {
+                gap: 0.5rem;
+            }
+
+            .nav-tabs button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-success {
+            color: var(--success);
+        }
+
+        .text-danger {
+            color: var(--danger);
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .badge.secondary {
+            background: var(--secondary);
+        }
+
+        .badge.accent {
+            background: var(--accent);
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">📚 FIMM Study Guide</div>
+            <div class="exam-timer">⏰ Examination: This Weekend</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="showSection('introduction')">📖 Introduction</button>
+            <button class="nav-btn" onclick="showSection('uts-fundamentals')">📊 UTS Fundamentals</button>
+            <button class="nav-btn" onclick="showSection('prs-guide')">🏦 PRS Guide</button>
+            <button class="nav-btn" onclick="showSection('financial-planning')">💼 Financial Planning</button>
+            <button class="nav-btn" onclick="showSection('regulations')">⚖️ Regulations</button>
+            <button class="nav-btn" onclick="showSection('calculations')">🧮 Key Formulas</button>
+            <button class="nav-btn" onclick="showSection('practice-questions')">❓ Practice Q&A</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <div id="introduction" class="section active">
+            <div class="intro-box">
+                <h1>Welcome to Your FIMM Examination Prep</h1>
+                <p>This comprehensive study guide covers Unit Trust Schemes (UTS), Private Retirement Schemes (PRS), financial planning, and regulatory requirements. Use this resource to reinforce key concepts and prepare for your examination.</p>
+            </div>
+
+            <div class="progress-section">
+                <h3>Your Study Progress</h3>
+                <p>Track your learning journey</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p>35% Complete - Keep up the momentum! 💪</p>
+            </div>
+
+            <div class="card">
+                <h2>📚 What You'll Learn</h2>
+                <div class="two-column">
+                    <div class="two-column-item">
+                        <h3>Unit Trust Schemes</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Basic structure & operations</li>
+                            <li>NAV calculations</li>
+                            <li>Unit pricing & distributions</li>
+                            <li>Investor rights</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item">
+                        <h3>Private Retirement Schemes</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Account structure</li>
+                            <li>Contribution rules</li>
+                            <li>Withdrawal eligibility</li>
+                            <li>Tax implications</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item">
+                        <h3>Professional Standards</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Code of Ethics</li>
+                            <li>Regulatory compliance</li>
+                            <li>Consultant responsibilities</li>
+                            <li>Investor protection</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item">
+                        <h3>Financial Planning</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>6-step planning process</li>
+                            <li>Client assessment</li>
+                            <li>Investment strategies</li>
+                            <li>Risk management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card secondary">
+                <h2>🎯 Examination Tips</h2>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Master NAV Calculations</strong> - These appear frequently in multiple forms
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Understand PRS Account Structure</strong> - The 70/30 split is critical
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Know the Code of Ethics</strong> - 4 core principles must be memorized
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Practice Scenario Questions</strong> - Real-world applications are key
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Review Regulatory Requirements</strong> - Know who regulates what
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UTS Fundamentals -->
+        <div id="uts-fundamentals" class="section">
+            <div class="intro-box">
+                <h1>Unit Trust Schemes (UTS) Fundamentals</h1>
+                <p>Master the basics of how Unit Trust Schemes work, from NAV calculations to investor protections.</p>
+            </div>
+
+            <div class="card">
+                <h2>What is a Unit Trust Scheme?</h2>
+                <p>A Unit Trust Scheme is a pooled investment vehicle where multiple investors combine their money to be professionally managed. Each investor owns "units" that represent their share of the fund.</p>
+
+                <div class="infographic">
+                    <h3>UTS Structure Overview</h3>
+                    <div class="flow-diagram">
+                        <div class="flow-box">💰 Investors Pool Money</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">📊 Fund Manager Invests</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">📈 Returns Distributed</div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🎯 Key Characteristics</h4>
+                    <ul>
+                        <li><strong>Diversification:</strong> Professional management spreads risk across many investments</li>
+                        <li><strong>Liquidity:</strong> Units can be bought/sold within 7 business days</li>
+                        <li><strong>Affordability:</strong> Start investing with as little as RM10</li>
+                        <li><strong>Professional Management:</strong> Experienced fund managers make investment decisions</li>
+                        <li><strong>Transparency:</strong> Daily unit pricing (NAV) is published</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card accent">
+                <h2>💡 NAV (Net Asset Value) Calculations</h2>
+                <p>NAV is the fundamental concept in UTS - it determines unit prices and is used in all transactions.</p>
+
+                <div class="formula-box">
+                    <h4>NAV Formula:</h4>
+                    <code>NAV = Total Assets - Total Liabilities</code>
+                    <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--primary);">
+                    <h4>NAV Per Unit:</h4>
+                    <code>NAV Per Unit = Total NAV / Number of Units in Circulation</code>
+                </div>
+
+                <div class="key-points" style="background: #e0f2fe; border-left-color: var(--primary-light);">
+                    <h4>🧮 Example Calculation</h4>
+                    <p style="margin: 1rem 0;">If a fund has:</p>
+                    <ul>
+                        <li>Total Assets: RM 100 million</li>
+                        <li>Total Liabilities: RM 10 million</li>
+                        <li>Units in Circulation: 100 million</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Then:</strong> NAV = RM90 million ÷ 100 million units = <span class="text-primary" style="font-weight: bold;">RM 0.90 per unit</span></p>
+                </div>
+            </div>
+
+            <div class="card success">
+                <h2>📊 Types of UTS Funds</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fund Type</th>
+                            <th>Composition</th>
+                            <th>Risk Level</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Equity Funds</strong></td>
+                            <td>Stocks & Shares</td>
+                            <td>High</td>
+                            <td>Long-term growth</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fixed Income</strong></td>
+                            <td>Bonds & Debt</td>
+                            <td>Low-Moderate</td>
+                            <td>Regular income</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mixed Asset</strong></td>
+                            <td>Stocks, Bonds, Cash</td>
+                            <td>Moderate</td>
+                            <td>Balanced portfolio</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Money Market</strong></td>
+                            <td>Short-term securities</td>
+                            <td>Very Low</td>
+                            <td>Liquidity & safety</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>💸 Fees & Charges</h2>
+                <div class="two-column">
+                    <div class="two-column-item" style="border: 2px solid #fca5a5;">
+                        <h3 style="color: var(--danger);">⚡ Direct Charges</h3>
+                        <p style="margin-top: 1rem;"><strong>Paid directly by investors:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Service Charge (entry fee)</li>
+                            <li>Exit/Repurchase Fee</li>
+                            <li>Switching Fee</li>
+                            <li>Transfer Fee</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item" style="border: 2px solid #a5d6ff;">
+                        <h3 style="color: var(--primary);">📊 Indirect Charges</h3>
+                        <p style="margin-top: 1rem;"><strong>Deducted from fund value:</strong></p>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Annual Management Fee</li>
+                            <li>Annual Trustee Fee</li>
+                            <li>Fund Operations Expenses</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="formula-box" style="margin-top: 2rem;">
+                    <h4>Working Money Calculation:</h4>
+                    <code>Working Money = Investment Amount ÷ (1 + Service Charge)</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Example: RM1,000 investment with 5% charge = RM1,000 ÷ 1.05 = RM952.38</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRS Guide -->
+        <div id="prs-guide" class="section">
+            <div class="intro-box">
+                <h1>Private Retirement Schemes (PRS) Complete Guide</h1>
+                <p>Understand the unique features of PRS, withdrawal rules, and the 70/30 account structure that defines retirement savings in Malaysia.</p>
+            </div>
+
+            <div class="card">
+                <h2>What is a PRS?</h2>
+                <p>A Private Retirement Scheme is a voluntary, long-term savings scheme designed to supplement mandatory retirement contributions and provide additional retirement income.</p>
+
+                <div class="infographic">
+                    <h3>Why PRS Matters</h3>
+                    <div class="flow-diagram">
+                        <div class="flow-box">💰 Extra Savings</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">💵 Tax Deduction</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">🏖️ Retirement Security</div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🎯 Key Benefits</h4>
+                    <ul>
+                        <li><strong>Tax Incentive:</strong> Up to RM3,000 per year tax deduction (extended to 2030)</li>
+                        <li><strong>Flexible Contributions:</strong> No fixed amount or schedule required</li>
+                        <li><strong>Professional Management:</strong> Access to diverse investment options</li>
+                        <li><strong>Creditor Protection:</strong> Protected from judgment debt</li>
+                        <li><strong>Economic Growth:</strong> Provides long-term capital for economy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card secondary">
+                <h2>🏦 The 70/30 Account Structure ⭐ CRITICAL</h2>
+                <p style="font-size: 1.1rem; color: var(--danger); font-weight: bold; margin-bottom: 1rem;">This is one of the most important concepts for your exam!</p>
+
+                <div class="infographic">
+                    <svg width="100%" height="250" viewBox="0 0 400 250" style="margin: 1rem 0;">
+                        <rect x="20" y="20" width="160" height="200" fill="#3b82f6" rx="8"/>
+                        <text x="100" y="120" text-anchor="middle" fill="white" font-size="32" font-weight="bold">70%</text>
+                        <text x="100" y="160" text-anchor="middle" fill="white" font-size="14">Sub-Account A</text>
+
+                        <rect x="220" y="20" width="160" height="200" fill="#f59e0b" rx="8"/>
+                        <text x="300" y="120" text-anchor="middle" fill="white" font-size="32" font-weight="bold">30%</text>
+                        <text x="300" y="160" text-anchor="middle" fill="white" font-size="14">Sub-Account B</text>
+                    </svg>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Sub-Account A (70%)</th>
+                            <th>Sub-Account B (30%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Withdrawal</strong></td>
+                            <td>❌ Locked until retirement</td>
+                            <td>✅ Flexible withdrawal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exceptions</strong></td>
+                            <td>Only special cases: death, disability</td>
+                            <td>Housing, healthcare, general purposes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Frequency</strong></td>
+                            <td>N/A</td>
+                            <td>Once per year</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tax Penalty</strong></td>
+                            <td>N/A</td>
+                            <td>8% tax penalty on pre-retirement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Retirement Age</strong></td>
+                            <td>55 years (or SC-specified age)</td>
+                            <td>55 years</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-points" style="background: #fee2e2; border-left-color: var(--danger); margin-top: 2rem;">
+                    <h4>⚠️ Important: 8% Tax Penalty Exemptions</h4>
+                    <p style="margin: 1rem 0;">Pre-retirement withdrawals from Sub-Account B are <strong>NOT subject to 8% penalty if:</strong></p>
+                    <ul>
+                        <li>Permanent departure from Malaysia (emigration)</li>
+                        <li>Death (with PPA authorization)</li>
+                        <li>Permanent total disablement or serious disease</li>
+                        <li>Healthcare for self/immediate family</li>
+                        <li>Housing (buy, build, repay loan)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card success">
+                <h2>🎯 Default Fund Allocation</h2>
+                <p style="margin-bottom: 1.5rem;">If members don't choose a specific fund, PRS Provider automatically allocates based on age:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Age Group</th>
+                            <th>Default Fund</th>
+                            <th>Investment Focus</th>
+                            <th>Risk Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Under 45</strong></td>
+                            <td>Growth Fund</td>
+                            <td>Capital appreciation</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td><strong>45-55</strong></td>
+                            <td>Moderate Fund</td>
+                            <td>Growth + Income</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>55+</strong></td>
+                            <td>Conservative Fund</td>
+                            <td>Income generation</td>
+                            <td>Low</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-points" style="background: #f0fdf4; border-left-color: var(--success); margin-top: 2rem;">
+                    <h4>💡 Remember</h4>
+                    <ul>
+                        <li>Provider must notify 1 month before automatic switch</li>
+                        <li>Switches happen over 5-year period in equal proportions</li>
+                        <li>Members can still choose their own funds at any time</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Planning -->
+        <div id="financial-planning" class="section">
+            <div class="intro-box">
+                <h1>Financial Planning & Consultant Responsibilities</h1>
+                <p>Master the 6-step financial planning process and understand your role as a consultant in guiding clients toward their financial goals.</p>
+            </div>
+
+            <div class="card">
+                <h2>6-Step Financial Planning Process</h2>
+
+                <div class="infographic" style="margin: 2rem 0;">
+                    <div style="background: white; padding: 2rem; border-radius: 12px; border: 2px solid var(--border);">
+                        <div class="flow-diagram" style="flex-direction: column; gap: 0.5rem;">
+                            <div class="flow-box" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">1️⃣ Establish Client-Planner Relationship</div>
+                            <div class="flow-arrow" style="transform: rotate(90deg); margin-right: 0;">↓</div>
+                            <div class="flow-box" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">2️⃣ Gather Client Data & Goals</div>
+                            <div class="flow-arrow" style="transform: rotate(90deg); margin-right: 0;">↓</div>
+                            <div class="flow-box" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">3️⃣ Analyze Financial Status</div>
+                            <div class="flow-arrow" style="transform: rotate(90deg); margin-right: 0;">↓</div>
+                            <div class="flow-box" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">4️⃣ Develop Recommendations</div>
+                            <div class="flow-arrow" style="transform: rotate(90deg); margin-right: 0;">↓</div>
+                            <div class="flow-box" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">5️⃣ Implement Plan</div>
+                            <div class="flow-arrow" style="transform: rotate(90deg); margin-right: 0;">↓</div>
+                            <div class="flow-box" style="background: linear-gradient(135deg, #10b981, #059669);">6️⃣ Monitor & Review</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🎯 Each Step in Detail</h4>
+                    <ul style="padding: 1rem 0;">
+                        <li><strong>Step 1:</strong> Define services, clarify responsibilities, discuss costs & fees</li>
+                        <li><strong>Step 2:</strong> Financial situation, goals, current investments, income/expenses</li>
+                        <li><strong>Step 3:</strong> Evaluate current position, assess cash flow, review investments</li>
+                        <li><strong>Step 4:</strong> Develop investment strategy, allocate assets, select products</li>
+                        <li><strong>Step 5:</strong> Execute recommendations, establish accounts, document decisions</li>
+                        <li><strong>Step 6:</strong> Regular reviews, performance checks, adjustments as needed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card accent">
+                <h2>📋 Areas Covered in Financial Planning</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Area</th>
+                            <th>Focus</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cash Management</strong></td>
+                            <td>Liquidity & immediate needs</td>
+                            <td>Emergency funds, day-to-day expenses</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Risk Management</strong></td>
+                            <td>Insurance & protection</td>
+                            <td>Life, health, disability, critical illness</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Investment Planning</strong></td>
+                            <td>Long-term growth</td>
+                            <td>UTS, stocks, bonds, mutual funds</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tax Planning</strong></td>
+                            <td>Tax optimization</td>
+                            <td>Deductions, exemptions, strategies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Retirement Planning</strong></td>
+                            <td>Post-career income</td>
+                            <td>PRS, EPF, pensions, investments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estate Planning</strong></td>
+                            <td>Wealth transfer</td>
+                            <td>Wills, trusts, inheritance</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card secondary">
+                <h2>💼 Consultant's Key Responsibilities</h2>
+
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Gather Information:</strong> Understand client's financial situation, goals, and constraints
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Conduct Suitability Assessment:</strong> Ensure recommendations match client profile
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Provide Clear Explanations:</strong> Make features, benefits, and risks understandable
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Disclose Conflicts:</strong> Inform clients of any conflicts of interest in writing
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Document Everything:</strong> Keep records of recommendations and client decisions
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Monitor & Review:</strong> Periodically check if recommendations still suit client
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regulations -->
+        <div id="regulations" class="section">
+            <div class="intro-box">
+                <h1>Regulatory Framework & Code of Ethics</h1>
+                <p>Understand the regulatory environment, the Code of Ethics, and your obligations as a financial consultant.</p>
+            </div>
+
+            <div class="card">
+                <h2>🏛️ Main Regulatory Authorities</h2>
+                <div class="two-column">
+                    <div class="two-column-item" style="border-left: 4px solid #3b82f6; background: #f0f4ff;">
+                        <h3>Securities Commission Malaysia (SC)</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Primary regulator for capital markets</li>
+                            <li>Approves UTS and PRS schemes</li>
+                            <li>Sets guidelines and regulations</li>
+                            <li>Enforces market conduct standards</li>
+                            <li>Issues licenses and permits</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item" style="border-left: 4px solid #059669; background: #f0fdf4;">
+                        <h3>FIMM (Self-Regulatory)</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Registers consultants/distributors</li>
+                            <li>Enforces Code of Ethics</li>
+                            <li>Investigates complaints</li>
+                            <li>Maintains professional standards</li>
+                            <li>Disciplinary proceedings</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item" style="border-left: 4px solid #f59e0b; background: #fffbeb;">
+                        <h3>FMOS (Dispute Resolution)</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Handles investor complaints</li>
+                            <li>Independent & impartial</li>
+                            <li>Covers securities & funds</li>
+                            <li>Protects consumers</li>
+                            <li>Timely resolutions</li>
+                        </ul>
+                    </div>
+                    <div class="two-column-item" style="border-left: 4px solid #dc2626; background: #fee2e2;">
+                        <h3>BNM (Bank Negara)</h3>
+                        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Monetary authority</li>
+                            <li>Banking regulation</li>
+                            <li>Custodian oversight</li>
+                            <li>Liquidity management</li>
+                            <li>Financial stability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card success">
+                <h2>⭐ Code of Ethics - 4 Core Principles</h2>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem; font-weight: 600;">These are essential - memorize them!</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div style="background: #f0f4ff; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                        <h3 style="color: #1e40af; margin-bottom: 1rem;">1️⃣ Honesty & Integrity</h3>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Act with honesty, integrity, dignity</li>
+                            <li>Professional and ethical conduct</li>
+                            <li>Transparent in all dealings</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fffbeb; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                        <h3 style="color: #92400e; margin-bottom: 1rem;">2️⃣ Professionalism</h3>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Prompt and efficient service</li>
+                            <li>Due care and diligence</li>
+                            <li>Continuous improvement</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #059669;">
+                        <h3 style="color: #065f46; margin-bottom: 1rem;">3️⃣ Conflict of Interest</h3>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Disclose conflicts in writing</li>
+                            <li>Prioritize investor interests</li>
+                            <li>Avoid real/potential conflicts</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fee2e2; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #dc2626;">
+                        <h3 style="color: #7f1d1d; margin-bottom: 1rem;">4️⃣ Disclosure</h3>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Clear, balanced information</li>
+                            <li>Consistent with regulatory docs</li>
+                            <li>Appropriate disclaimers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points" style="background: #fee2e2; border-left-color: var(--danger); margin-top: 2rem;">
+                    <h4>⚠️ Prohibited Activities</h4>
+                    <ul>
+                        <li>❌ Guaranteeing returns</li>
+                        <li>❌ Misrepresenting qualifications</li>
+                        <li>❌ Making unfounded claims</li>
+                        <li>❌ Aggressive or misleading selling</li>
+                        <li>❌ Concealing material information</li>
+                        <li>❌ Undisclosed conflicts of interest</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🔑 Consultant Registration Requirements</h2>
+
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Age:</strong> At least 21 years old
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Qualification:</strong> Minimum 3 credits in any SPM subjects
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>FIMM Exam:</strong> Must pass (unless exempted)
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Fit & Proper Test:</strong> Honesty, competence, financial soundness
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-check">✓</div>
+                        <div>
+                            <strong>Re-registration:</strong> License renewal before December 31 annually
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-points" style="background: #f0f4ff; border-left-color: var(--primary); margin-top: 2rem;">
+                    <h4>⚡ Critical: 3+ Year Absence Rule</h4>
+                    <p>If you leave the industry for <strong>more than 3 years</strong>, you must sit for FIMM examination again before re-registering as a consultant.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculations -->
+        <div id="calculations" class="section">
+            <div class="intro-box">
+                <h1>Key Formulas & Calculations</h1>
+                <p>Master the essential mathematical formulas that appear frequently in examinations.</p>
+            </div>
+
+            <div class="card">
+                <h2>📐 Basic NAV Calculations</h2>
+
+                <div class="formula-box">
+                    <h4>NAV Formula</h4>
+                    <code>NAV = Total Assets - Total Liabilities</code>
+                </div>
+
+                <div class="formula-box">
+                    <h4>NAV Per Unit</h4>
+                    <code>NAV Per Unit = Total NAV ÷ Number of Units in Circulation</code>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Unit Price (Same as NAV Per Unit)</h4>
+                    <code>Unit Price = Net Assets ÷ Units in Circulation</code>
+                </div>
+            </div>
+
+            <div class="card accent">
+                <h2>💰 Investment Calculations</h2>
+
+                <div class="formula-box">
+                    <h4>Working Money (Amount Actually Invested)</h4>
+                    <code>Working Money = Investment ÷ (1 + Service Charge%)</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Example: RM1,000 with 5% charge = RM1,000 ÷ 1.05 = RM952.38</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Number of Units Purchased</h4>
+                    <code>No. of Units = Working Money ÷ NAV Per Unit</code>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Redemption Proceeds</h4>
+                    <code>Redemption = No. of Units × NAV Per Unit</code>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Dollar Cost Averaging</h4>
+                    <code>Average Cost/Unit = Total Invested ÷ Total Units Purchased</code>
+                </div>
+            </div>
+
+            <div class="card success">
+                <h2>📊 Performance Metrics</h2>
+
+                <div class="formula-box">
+                    <h4>Raw Return (Total Return)</h4>
+                    <code>Raw Return = (Ending Price - Beginning Price) ÷ Beginning Price × 100%</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">If price goes from RM1.00 to RM1.50 in 5 years: (1.50-1.00)/1.00 × 100 = <strong>50% return</strong></p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Compound Annual Growth Rate</h4>
+                    <code>FV = PV × (1 + i)^n</code>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">FV = Future Value | PV = Present Value | i = annual rate | n = years</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Rule of 72 (Quick Estimation)</h4>
+                    <code>72 ÷ Interest Rate = Years to Double</code>
+                    <code style="margin-top: 0.5rem;">72 ÷ Years = Required Interest Rate</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">At 8% return, investment doubles in 72÷8 = <strong>9 years</strong></p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Management Expense Ratio (MER)</h4>
+                    <code>MER = (Total Expenses ÷ Average Fund Size) × 100%</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Shows the annual cost of holding units as percentage of fund size</p>
+                </div>
+            </div>
+
+            <div class="card secondary">
+                <h2>🔄 Distribution & Unit Operations</h2>
+
+                <div class="formula-box">
+                    <h4>Income Distribution</h4>
+                    <code>Ex-NAV = Cum-NAV - Distribution Per Unit</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">After distribution, NAV per unit is reduced by the amount distributed</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Unit Split Impact (1:4 Example)</h4>
+                    <code>Units After = Units Before × 5÷4</code>
+                    <code style="margin-top: 0.5rem;">NAV Per Unit After = NAV Per Unit Before × 4÷5</code>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Total NAV remains unchanged; units increase, price per unit decreases</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Loan Financing Ratio</h4>
+                    <code>Loan Amount = 67% of Investment</code>
+                    <code style="margin-top: 0.5rem;">Own Capital = 33% of Investment</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Questions -->
+        <div id="practice-questions" class="section">
+            <div class="intro-box">
+                <h1>Practice Questions & Answers</h1>
+                <p>Test your knowledge with these sample questions covering all major topics. Click on any question to reveal the answer and explanation.</p>
+            </div>
+
+            <div class="questions-container">
+                <!-- Question 1 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">1</div>
+                        <div class="question-text">What is NAV per unit if a fund has Total NAV of RM100 million with 50 million units in circulation?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Calculation:</strong>
+                            <p style="margin: 1rem 0 0 0;">NAV per Unit = RM100 million ÷ 50 million units = <span class="text-primary" style="font-weight: bold;">RM2.00</span></p>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> NAV per unit is calculated by dividing total NAV by the number of units in circulation. This represents the price at which units are bought and sold.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">2</div>
+                        <div class="question-text">An investor invests RM5,000 in a fund with a 3% service charge. What is the working money?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Calculation:</strong>
+                            <p style="margin: 1rem 0 0 0;">Working Money = RM5,000 ÷ (1 + 0.03) = RM5,000 ÷ 1.03 = <span class="text-primary" style="font-weight: bold;">RM4,854.37</span></p>
+                            <p style="margin: 0.5rem 0 0 0;">Service Charge = RM5,000 - RM4,854.37 = <span class="text-danger" style="font-weight: bold;">RM145.63</span></p>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> The service charge is deducted from the investment amount. Working money is what actually goes into purchasing units. The remaining amount goes to fees.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">3</div>
+                        <div class="question-text">What percentage of PRS contributions go to Sub-Account B, and when can withdrawals be made?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Answer:</strong>
+                            <p style="margin: 1rem 0 0 0;"><span class="text-primary" style="font-weight: bold;">30% goes to Sub-Account B</span></p>
+                            <p style="margin: 0.5rem 0 0 0;">Withdrawals can be made <span class="text-primary" style="font-weight: bold;">once per year</span> for:</p>
+                            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Housing purposes</li>
+                                <li>Healthcare purposes</li>
+                                <li>General purposes</li>
+                            </ul>
+                            <p style="margin-top: 0.5rem;"><strong>Subject to:</strong> 8% tax penalty before retirement age (unless exempted)</p>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> The 70/30 split is a fundamental aspect of PRS. Sub-Account A (70%) is locked until retirement, while Sub-Account B (30%) provides flexibility for specific needs, subject to tax penalties for pre-retirement withdrawals.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">4</div>
+                        <div class="question-text">What are the 4 core principles of FIMM's Code of Ethics?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>The 4 Core Principles are:</strong>
+                            <ol style="margin-left: 1.5rem; margin-top: 1rem;">
+                                <li><strong>Honesty & Integrity</strong> - Act professionally and conduct with dignity</li>
+                                <li><strong>Professionalism</strong> - Provide prompt, efficient service with due diligence</li>
+                                <li><strong>Conflict of Interest</strong> - Disclose conflicts and prioritize investor interests</li>
+                                <li><strong>Disclosure of Information</strong> - Provide clear, balanced, transparent information</li>
+                            </ol>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> These four principles are the foundation of FIMM's Code of Ethics. They apply to all consultants and distributors. You must memorize these for the examination.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">5</div>
+                        <div class="question-text">A UTS fund declares a distribution of 10 sen per unit. After the distribution, how does the unit price change?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Answer:</strong>
+                            <p style="margin: 1rem 0 0 0;">The unit price <span class="text-danger" style="font-weight: bold;">DECREASES by 10 sen</span></p>
+                            <p style="margin: 0.5rem 0 0 0;">Formula: Ex-NAV = Cum-NAV - Distribution</p>
+                            <p style="margin: 0.5rem 0 0 0;">Example: If Cum-NAV is RM1.80 and distribution is RM0.10</p>
+                            <p style="margin: 0.5rem 0 0 0;">Ex-NAV = RM1.80 - RM0.10 = <span class="text-primary" style="font-weight: bold;">RM1.70</span></p>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> Distribution paid to unit holders reduces the fund's NAV. This is not "free money" — the unit holder receives a distribution but the unit price drops by the same amount. The total value remains the same for unit holders who received the distribution.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">6</div>
+                        <div class="question-text">What is the default fund allocation for a PRS member aged 48 years old who didn't choose any fund?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Answer:</strong>
+                            <p style="margin: 1rem 0 0 0;"><span class="text-primary" style="font-weight: bold;">Moderate Fund</span></p>
+                            <p style="margin: 0.5rem 0 0 0;"><strong>Default Allocation Rules:</strong></p>
+                            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>&lt;45 years → Growth Fund</li>
+                                <li>45-55 years → <span class="text-primary" style="font-weight: bold;">Moderate Fund (48 falls here)</span></li>
+                                <li>&gt;55 years → Conservative Fund</li>
+                            </ul>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> Moderate Fund balances growth with income generation, appropriate for mid-career investors approaching retirement. The provider must notify the member 1 month before automatic switching occurs.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">7</div>
+                        <div class="question-text">What is the first step in the 6-step financial planning process?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Answer:</strong>
+                            <p style="margin: 1rem 0 0 0;"><span class="text-primary" style="font-weight: bold;">Step 1: Establish Client-Planner Relationship</span></p>
+                            <p style="margin: 0.5rem 0 0 0;"><strong>This involves:</strong></p>
+                            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Defining services to be provided</li>
+                                <li>Clarifying responsibilities</li>
+                                <li>Discussing costs and fees</li>
+                                <li>Setting expectations</li>
+                            </ul>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> Before gathering any data or making recommendations, you must establish trust and clear understanding with the client about the scope and cost of the planning engagement. This foundational step prevents misunderstandings later.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">8</div>
+                        <div class="question-text">If an investment grows from RM100,000 to RM175,000 in 5 years, what is the approximate compound annual growth rate (using Rule of 72)?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Calculation:</strong>
+                            <p style="margin: 1rem 0 0 0;">This is 75% total return (growth of RM75,000)</p>
+                            <p style="margin: 0.5rem 0 0 0;">This means investment went from 1× to 1.75×</p>
+                            <p style="margin: 0.5rem 0 0 0;">Using CAGR formula: 1.75 = (1 + i)^5</p>
+                            <p style="margin: 0.5rem 0 0 0;">Solving: i ≈ <span class="text-primary" style="font-weight: bold;">11.84% CAGR</span></p>
+                            <p style="margin: 0.75rem 0 0 0;"><strong>Rule of 72 check:</strong> 72 ÷ 11.84% ≈ 6 years to double (close to our 5-year 75% return)</p>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> CAGR shows the annualized growth rate including compounding effects. It's more meaningful than average return because it accounts for the time value of money. Always distinguish between total return (75% over 5 years) and annual rate (11.84%).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">9</div>
+                        <div class="question-text">Which of the 8% PRS tax penalty exemptions apply to paying for house repairs?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Answer:</strong>
+                            <p style="margin: 1rem 0 0 0;"><span class="text-danger" style="font-weight: bold;">NO - House repairs do NOT qualify</span></p>
+                            <p style="margin: 0.5rem 0 0 0;"><strong>Housing exemptions DO include:</strong></p>
+                            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>✓ Buy a house (purchase)</li>
+                                <li>✓ Build a house (construction)</li>
+                                <li>✓ Reduce/redeem housing loan</li>
+                                <li>✗ Renovate/repair existing house</li>
+                            </ul>
+                            <p style="margin-top: 0.75rem;"><strong>Healthcare exemptions:</strong> For self or immediate family members' medical/health purposes (listed conditions only)</p>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> The exemptions are specifically for acquiring housing or healthcare treatment, not for maintenance or non-essential improvements. This is a common trap question on exams — students often assume all housing-related expenses qualify.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question-card" onclick="toggleQuestion(this)">
+                    <div class="question-header">
+                        <div class="question-number">10</div>
+                        <div class="question-text">A consultant must disclose conflicts of interest. What is the required method?</div>
+                        <div class="toggle-icon">▼</div>
+                    </div>
+                    <div class="question-answer">
+                        <div class="key-points" style="background: white; border: 1px solid var(--border); margin: 0;">
+                            <strong>Answer:</strong>
+                            <p style="margin: 1rem 0 0 0;">Disclose conflicts of interest <span class="text-primary" style="font-weight: bold;">in WRITING to the investor</span></p>
+                            <p style="margin: 0.5rem 0 0 0;"><strong>Requirements:</strong></p>
+                            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Must be written (not verbal)</li>
+                                <li>Must be given to investor</li>
+                                <li>Must clearly state the nature of conflict</li>
+                                <li>Must allow investor to make informed decision</li>
+                            </ul>
+                        </div>
+                        <div class="answer-explanation">
+                            <strong>Explanation:</strong> Written disclosure creates a record and ensures the investor has full information before making decisions. This is part of the \"Disclosure of Information\" core principle — transparency protects both parties and upholds professional integrity.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>📚 FIMM Examination Study Guide - Comprehensive Learning Resource</p>
+        <p>Good luck with your examination this weekend! 🎓</p>
+        <p style="opacity: 0.7; margin-top: 1rem; font-size: 0.9rem;">Last Updated: 2026 | Use this guide for revision and practice</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleQuestion(element) {
+            element.classList.toggle('expanded');
+        }
+
+        // Initialize progress bar (this could be connected to a real tracking system)
+        document.addEventListener('DOMContentLoaded', function() {
+            // You could add more interactivity here
+            console.log('Study Guide Ready!');
+        });
+    </script>
+</body>
+</html>
